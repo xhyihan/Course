@@ -27,25 +27,18 @@ class Register extends React.Component {
 		this.setState({password: event.target.value})
 	}
 
-	onSubmitSignin =() =>{
-			fetch('http://localhost:3000/register', {
-				method: 'post',
-				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({
-					studentid: this.state.studentid,
-					email: this.state.email,
-					password: this.state.password,
-					name: this.state.name
-				})
-			})
-				.then(response => response.json())
-				.then(user => {
-					if(user){
-						this.props.loadUser(user)
-						this.props.onRouteChange('home');
-					}
-				})	
-		}
+	onSubmitSignin = () => {
+		// Skip validation for now
+		this.props.loadUser({
+		  studentid: '110000000',
+		  email: 'student@gmail.com.com',
+		  password: '110000000',
+		  name: 'student',
+		});
+		this.props.onRouteChange('home');
+	  }
+
+
 
 	render(){
 		return(
